@@ -23,7 +23,7 @@ classifiers = [
 	"Programming Language :: Python :: 3",
 	"Programming Language :: Python :: 3 :: Only",
 ]
-requires-python = ">=3.9"
+requires-python = ">=3.10"
 license = "MIT"
 dependencies = [
 	'pywin32-ctypes>=0.2.0; sys_platform=="win32"',
@@ -63,7 +63,7 @@ doc = [
 ]
 
 check = [
-	"pytest-checkdocs >= 2.4",
+	"pytest-checkdocs >= 2.14",
 	"pytest-ruff >= 0.2.1; sys_platform != 'cygwin'",
 ]
 
@@ -77,7 +77,9 @@ enabler = [
 
 type = [
 	# upstream
-	"pytest-mypy >= 1.0.1",
+	
+    # Exclude PyPy from type checks (python/mypy#20454 jaraco/skeleton#187)
+	"pytest-mypy >= 1.0.1; platform_python_implementation != 'PyPy'",
 
 	# local
 	"pygobject-stubs",
